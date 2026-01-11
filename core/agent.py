@@ -8,7 +8,14 @@ from middlewares import get_all_middleware
 from langchain.agents.middleware import ModelCallLimitMiddleware
 from langchain.agents.middleware import ToolCallLimitMiddleware
 from langchain.agents.middleware import ToolRetryMiddleware
+from langgraph.checkpoint.sqlite import SqliteSaver
+from langgraph.checkpoint.memory import InMemorySaver
+from langchain.agents import create_agent, AgentState
 
+
+class CustomAgentState(AgentState):  
+    user_id: str
+    preferences: dict
 
 def create_my_agent():
     # 모델 로드
@@ -25,6 +32,9 @@ def create_my_agent():
     agent = create_agent(
         model=llm,
         tools=tools,  # Agent가 사용할 도구 목록
-        middleware=base_middleware
+        middleware=base_middleware,
+        state_schema=CustomAgentState,  # 사용자 정의 상태 스키마 등록
+        checkpointer=InMemorySaver()   # 단기 메모리 저장소
     )
+    
     return agent

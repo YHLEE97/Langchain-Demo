@@ -1,19 +1,15 @@
 # tools/__init__.py
 from .middleware_llm import summarization_middleware
 
-from .base_middleware import model_limiter
-from .base_middleware import global_limiter
-from .base_middleware import toolcall_limiter
-
-from.pii_detection import email_detection
-from.pii_detection import card_detection
-from.pii_detection import api_detection
+from .base_middleware import *
+from .pii_detection import *
+from .message_middleware import *
 
 def get_all_middleware():
-    return [summarization_middleware()]
     return [*get_middleware_llm(),
             *get_base_middleware(),
-            *get_PII_middleware()
+            *get_PII_middleware(),
+            *get_message_middleware()
             ]
     
 def get_middleware_llm():
@@ -23,9 +19,9 @@ def get_middleware_llm():
 def get_base_middleware():
     """에이전트가 사용할 Base Middleware 를 반환합니다."""
     return [
-        model_limiter(),
-        global_limiter(),
-        toolcall_limiter()
+        #model_limiter(),
+        #global_limiter(),
+        #toolcall_limiter()
     ]
 
 def get_PII_middleware():
@@ -34,5 +30,15 @@ def get_PII_middleware():
         email_detection(),
         card_detection(),
         api_detection()
+    ]
+    
+
+def get_message_middleware():
+    """메세지 trim 및 delete 처리 및 securty, 종료"""
+    return [
+        trim_messages,
+        delete_old_messages,
+        check_security,
+        validate_response
     ]
     
