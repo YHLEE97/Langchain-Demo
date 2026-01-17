@@ -28,18 +28,14 @@ python -m venv .venv
 
 # 3. 의존성 패키지 설치
 pip install -r requirements.txt
-```
 
-### 2. 환경 변수 설정 (.env)
-```bash
-# .env 파일 생성 및 작성 필요
-cp .env.example .env
-```
+# .env.example 참고하여 .env 작성 필요
 
-### 3. Local SLM Model Setup(Naver HyperCLOVA X)
-- 0.5B Model (Test용 초경량)
-```bash
-# 모델 다운로드 및 설치
+[cmd] python main.py
+
+deactivate
+
+# Naver SLM 설치
 python slm/naver-hyperclovax/install_0_5b.py 
 
 # 로드 테스트
