@@ -21,3 +21,7 @@ __pycache__/
 # 운영체제 생성 파일
 .DS_Store
 Thumbs.db
+
+# slm(naver-hyperclovax)
+slm/naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B
+slm/naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-0.5B

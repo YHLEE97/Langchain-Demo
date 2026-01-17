@@ -1,6 +1,6 @@
 # core/agent.py
 from langchain.agents import create_agent
-from core.model import get_gpt_model_4o
+from core.model import get_gpt_model_4o,get_hyperclovax_1_5B
 from core.prompt import INSTRUCTION
 from tools import get_all_tools
 from middlewares import get_all_middleware
@@ -19,7 +19,8 @@ class CustomAgentState(AgentState):
 
 def create_my_agent():
     # 모델 로드
-    llm = get_gpt_model_4o()
+    # llm = get_gpt_model_4o()
+    llm = get_hyperclovax_1_5B()
     
     # 통합된 도구 리스트 로드
     tools = get_all_tools()
