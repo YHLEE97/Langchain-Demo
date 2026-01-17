@@ -19,8 +19,8 @@ class CustomAgentState(AgentState):
 
 def create_my_agent():
     # 모델 로드
-    # llm = get_gpt_model_4o()
-    llm = get_hyperclovax_1_5B()
+    llm = get_gpt_model_4o()
+    #llm = get_hyperclovax_1_5B()
     
     # 통합된 도구 리스트 로드
     tools = get_all_tools()

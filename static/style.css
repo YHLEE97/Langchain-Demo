@@ -1,0 +1,108 @@
+/* static/style.css */
+body {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* 메인 컨테이너 (폰 화면처럼) */
+.main-container {
+    width: 400px;
+    height: 600px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 헤더 */
+.chat-header {
+    background-color: #3b5998;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 채팅창 영역 */
+.chat-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #e9e9e9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 말풍선 공통 스타일 */
+.message {
+    display: flex;
+    align-items: flex-end;
+}
+
+.bubble {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+/* AI 말풍선 (왼쪽, 흰색) */
+.ai-message {
+    justify-content: flex-start;
+}
+.ai-message .bubble {
+    background-color: white;
+    border-top-left-radius: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 유저 말풍선 (오른쪽, 파란색/노란색) */
+.user-message {
+    justify-content: flex-end;
+}
+.user-message .bubble {
+    background-color: #fee500; /* 카카오 노랑 */
+    color: #000;
+    border-top-right-radius: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* 입력 영역 */
+.input-area {
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+button:hover {
+    background-color: #2d4373;
+}
