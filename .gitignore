@@ -28,3 +28,7 @@ slm/naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-0.5B/
 
 # log
 logs/
+
+# SQLite 데이터베이스 파일 무시
+*.db
+*.sqlite3

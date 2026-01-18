@@ -1,6 +1,8 @@
 import logging
 import sys
+import os
 from logging.handlers import TimedRotatingFileHandler
+from concurrent_log_handler import ConcurrentRotatingFileHandler
 from config.settings import setting
 
 def get_logger(name: str):
@@ -32,15 +34,19 @@ def get_logger(name: str):
 
     # --- 핸들러 2: 파일 저장 ---
     # settings.py에서 정의한 LOG_DIR 사용
-    log_file_path = setting.LOG_DIR / "app.log"
+    log_dir = setting.LOG_DIR
+    log_filename = "app.log"
+    log_file_path = os.path.join(str(log_dir), log_filename)
     
-    file_handler = TimedRotatingFileHandler(
+    file_handler = ConcurrentRotatingFileHandler(
         filename=log_file_path,
-        when="midnight",
-        interval=1,
+        mode="a",
+        maxBytes=10 * 1024 * 1024,  # 10MB가 넘으면 파일을 나눔
+        backupCount=30,             # 지난 로그 파일 30개 보관
         encoding="utf-8",
-        backupCount=30
+        use_gzip=False              # 압축 사용 여부 (False 권장)
     )
+    
     file_handler.setLevel(logging.DEBUG) # 파일엔 자세히 기록
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)

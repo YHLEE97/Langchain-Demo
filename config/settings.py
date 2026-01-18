@@ -13,6 +13,9 @@ class Setting:
     # 로그 폴더
     LOG_DIR = BASE_DIR / "logs"
     
+    # DB 저장 폴더
+    DB_DIR = BASE_DIR / "database" / "rdm"
+    
     # 로컬 모델 저장 폴더 (slm)
     SLM_BASE_DIR = BASE_DIR / "slm"
     
