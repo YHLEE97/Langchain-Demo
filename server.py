@@ -107,7 +107,8 @@ async def chat_endpoint(request: ChatRequest, db: Session = Depends(get_db)):
             {"messages": [("user", request.query)]},
             {"configurable": {
                 "thread_id": request.thread_id},
-                "callbacks": [db_callback] 
+                "callbacks": [db_callback],
+                "recursion_limit": 100  # 기본값 25 -> 50으로 증가
              }
         )
         

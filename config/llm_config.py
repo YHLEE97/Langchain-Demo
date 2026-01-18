@@ -10,7 +10,7 @@ class ModelType:
 # ▼ [여기를 수정하세요] 사용할 모델을 여기서 선택합니다.
 # =========================================================
 # 1. Main Model
-ACTIVE_MODEL = ModelType.GEMINI_2_5_FLASH
+ACTIVE_MODEL = ModelType.OPENAI_GPT4
 
 # 2. Middleware Model
 MIDDLEWARE_SUMMARY_MODEL = ModelType.GEMINI_2_5_FLASH
