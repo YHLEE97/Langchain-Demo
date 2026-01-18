@@ -1,5 +1,5 @@
 from langchain.tools import tool
-from database.vector_db import get_vector_db
+from database.verctor.store import get_vector_db
 
 @tool(response_format="content_and_artifact")  #텍스트 설명 + 실제 결과물
 def get_retrieve_context(query: str):

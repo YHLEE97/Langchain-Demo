@@ -1,6 +1,6 @@
 # main.py
 from dotenv import load_dotenv
-from core.agent import create_my_agent
+from agents.orchestration import create_my_agent
 
 # 1. 환경 변수 로드
 load_dotenv()
@@ -10,7 +10,8 @@ app = create_my_agent()
 
 # 3. 실행
 def main():
-    query = "오늘 날짜 확인하고 삼성전자 종가 알려줘"
+    # query = "오늘 날짜 확인하고 삼성전자 종가 알려줘"
+    query = "안녕"
     
     result = app.invoke(
         {

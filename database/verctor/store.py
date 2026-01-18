@@ -3,7 +3,7 @@ import os
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_core.vectorstores import InMemoryVectorStore
-from core.model import get_embeddings
+from services.embedding import get_embedding
 
 CHROMA_PATH = "./chroma_db"
 
@@ -12,7 +12,7 @@ def save_to_vector_db(all_splits):
     
     vector_db = Chroma.from_documents(
         collection_name="example_collection",
-        embedding=get_embeddings(),
+        embedding=get_embedding(),
         persist_directory=CHROMA_PATH
     )
     vector_db.add_documents(documents=all_splits)
@@ -26,5 +26,5 @@ def get_vector_db():
         
     return Chroma(
         persist_directory=CHROMA_PATH,
-        embedding_function=get_embeddings()
+        embedding_function=get_embedding()
     )

@@ -2,7 +2,7 @@
 import os
 from langchain_community.document_loaders import DirectoryLoader, TextLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from database.vector_db import save_to_vector_db
+from database.verctor.store import save_to_vector_db
 from langchain_community.document_loaders import PyPDFLoader
 
 def load_pdf_file(file_path="../data/reports/nke-10k-2023_korean.pdf"):

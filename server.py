@@ -1,22 +1,16 @@
 # server.py
-import sys
-import os
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
-from dotenv import load_dotenv
-from core.logger import get_logger # 방금 만든 로거 임포트
-
-# core 모듈 경로 추가
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from core.agent import create_my_agent
+from common.logger import get_logger # 방금 만든 로거 임포트
+from config import settings
+from agents import create_my_agent
+    
 
 # 환경 설정
-load_dotenv()
-
-# 로거 초기화 (이름은 보통 __name__ 사용)
+settings()
 logger = get_logger(__name__)
 
 app = FastAPI()

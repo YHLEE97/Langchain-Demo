@@ -1,11 +1,11 @@
 from langchain.agents.middleware import SummarizationMiddleware
-from core.model import get_gemini_model_2_5_flash
+from services.llm import get_middleware_summary_llm
 
 def summarization_middleware():
     """
     메시지 이력이 너무 길어지면 요약하여 컨텍스트를 압축함
     """
-    model = get_gemini_model_2_5_flash()
+    model = get_middleware_summary_llm()
     
     return SummarizationMiddleware(          # 요약 미들웨어 추가
             model=model,                  # 요약에 사용할 모델

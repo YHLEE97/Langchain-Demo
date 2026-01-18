@@ -59,7 +59,12 @@ python slm/naver-hyperclovax/test_1_5b.py
 ```
 - 모델 변경은 core/agent.py 파일 내의 llm 설정 부분에서 수정할 수 있습니다.
 
-### 4. Usage
+### 4. Config 설정
+- config/embedding_config.py - ACTIVE_EMBEDDING 적용
+- config/llm_config.py - ACTIVE_MODEL 적용
+- config/prompt_config.py - ACTIVE_PROMPT 적용
+
+### 5. Usage
 - CLI 기반 테스트 (Backend) - Test
 ```bash
 python test.py
@@ -71,7 +76,7 @@ uvicorn server:app --reload
 ```
 - 접속 주소: http://127.0.0.1:8000
 
-### 5. Deactivate
+### 6. Deactivate
 ```bash
 deactivate
 ```
@@ -79,13 +84,30 @@ deactivate
 ### 📂 Project Structure
 ```
 LANGCHAIN-DEMO/
-├── .env                  # 환경 변수
-├── core/                 # 핵심 로직 (Agent, Prompt)
-├── slm/                  # 로컬 SLM 모델 관리
-├── api/                  # API 서버 로직 (Optional)
-├── static/               # CSS, JS 정적 파일
-├── templates/            # HTML 템플릿
-├── server.py             # FastAPI 메인 서버
-└── main.py               # CLI 테스트 실행 파일
+├── config/                 # 모든 설정값 관리 (모델 선택, 환경변수 등)
+│
+├── common/                 # 프로젝트 전반에 쓰이는 공통 유틸 (Infra)
+│
+├── data/                   # data
+│
+├── database/               # DB 관련 (Vector + RDB 분리)
+│   │   └── store.py
+│   └── rdb/                # RDB 관련
+│
+├── services/               # 핵심 기능 모듈화
+│   ├── embedding/          # Embedding 생성 로직 
+│   ├── llm/                # LLM 생성 로직 
+│   ├── middlewares/        # Middleware 관리
+│   ├── prompt/             # 프롬프트 관리
+│   └── tools/              # 기존 tools 폴더 이동
+│
+├── agent/                  # 에이전트 조립 
+│
+├── static/                 # 프론트엔드 리소스
+├── templates/              # 프론트엔드 HTML 
+├── slm/                    # 로컬 모델 파일
+├── main.py                 # CLI 테스트용
+├── server.py               # 서버
+└── requirements.txt
 ```
 
