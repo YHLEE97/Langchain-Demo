@@ -16,7 +16,7 @@
 프로젝트 실행을 위한 환경 설정 및 설치 가이드입니다.
 
 ### 1. 가상환경 설정 및 패키지 설치
-Python 3.13 설치가필요합니다.
+Python 3.13 설치가 필요합니다.
 
 Python 가상환경을 생성하고 필수 의존성 패키지를 설치합니다.
 
@@ -57,7 +57,6 @@ python slm/naver-hyperclovax/install_1_5b.py
 # 로드 테스트
 python slm/naver-hyperclovax/test_1_5b.py
 ```
-- 모델 변경은 core/agent.py 파일 내의 llm 설정 부분에서 수정할 수 있습니다.
 
 ### 4. Config 설정
 - config/embedding_config.py - ACTIVE_EMBEDDING 적용
@@ -91,7 +90,7 @@ LANGCHAIN-DEMO/
 ├── data/                   # data
 │
 ├── database/               # DB 관련 (Vector + RDB 분리)
-│   │   └── store.py
+│   └── vector/             # Vector DB 관련
 │   └── rdb/                # RDB 관련
 │
 ├── services/               # 핵심 기능 모듈화
@@ -99,7 +98,7 @@ LANGCHAIN-DEMO/
 │   ├── llm/                # LLM 생성 로직 
 │   ├── middlewares/        # Middleware 관리
 │   ├── prompt/             # 프롬프트 관리
-│   └── tools/              # 기존 tools 폴더 이동
+│   └── tools/              # tools 관리
 │
 ├── agent/                  # 에이전트 조립 
 │
