@@ -1,16 +1,15 @@
-# server.py
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
-from common.logger import get_logger # 방금 만든 로거 임포트
+from common.logger import get_logger 
 from config import settings
 from agents import create_my_agent
     
 
 # 환경 설정
-settings()
+settings.setting()
 logger = get_logger(__name__)
 
 app = FastAPI()

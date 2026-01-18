@@ -1,5 +1,4 @@
-# config/llm_config.py
-from .settings import settings
+from config.settings import setting
 
 class ModelType:
     HYPERCLOVA_LOCAL_1_5B = "HyperCLOVAX-SEED-Text-Instruct-1.5B"
@@ -22,7 +21,7 @@ llm_configs = {
     # 1. 로컬 모델 (HyperCLOVA X 1.5B)
     ModelType.HYPERCLOVA_LOCAL_1_5B: {
         "provider": "local",
-        "model_path": settings.SLM_BASE_DIR / "HyperCLOVAX-SEED-Text-Instruct-1.5B",
+        "model_path": setting.SLM_BASE_DIR / "HyperCLOVAX-SEED-Text-Instruct-1.5B",
         "model_kwargs": {
             "device_map": "auto",
             "trust_remote_code": True
@@ -37,7 +36,7 @@ llm_configs = {
     # 2. 로컬 모델 (0.5B - 테스트용)
     ModelType.HYPERCLOVA_LOCAL_0_5B: {
         "provider": "local",
-        "model_path": settings.SLM_BASE_DIR / "HyperCLOVAX-SEED-Text-Instruct-0.5B",
+        "model_path": setting.SLM_BASE_DIR / "HyperCLOVAX-SEED-Text-Instruct-0.5B",
         "model_kwargs": {
             "device_map": "auto",
             "trust_remote_code": True
@@ -53,13 +52,13 @@ llm_configs = {
         "provider": "openai",
         "model_name": "gpt-4o",
         "temperature": 0.7,
-        "api_key": settings.OPENAI_API_KEY
+        "api_key": setting.OPENAI_API_KEY
     },
     # 4. Gemini (2.5-Flash)
     ModelType.GEMINI_2_5_FLASH: {
-        "provider": "openai",
-        "model_name": "gpt-4o",
+        "provider": "google",
+        "model_name": "gemini-2.5-flash",
         "temperature": 0.7,
-        "api_key": settings.GOOGLE_API_KEY
+        "api_key": setting.GOOGLE_API_KEY
     }
 }

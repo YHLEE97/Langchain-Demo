@@ -1,4 +1,3 @@
-# config/settings.py
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -6,7 +5,7 @@ from dotenv import load_dotenv
 # 1. .env 파일 로드
 load_dotenv()
 
-class Settings:
+class Setting:
     # --- [경로 설정] 프로젝트 루트를 기준으로 모든 경로를 자동 계산 ---
     # settings.py의 위치(config 폴더)의 부모(루트 폴더)
     BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,8 +33,8 @@ class Settings:
     DEBUG = True  # 배포 시 False로 변경
 
 # 전역 인스턴스 생성
-settings = Settings()
+setting = Setting()
 
 # 로그 폴더가 없으면 미리 생성 (안전장치)
-if not settings.LOG_DIR.exists():
-    settings.LOG_DIR.mkdir(parents=True, exist_ok=True)
+if not setting.LOG_DIR.exists():
+    setting.LOG_DIR.mkdir(parents=True, exist_ok=True)

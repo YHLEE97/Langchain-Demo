@@ -6,7 +6,7 @@ from langchain_core.prompts import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate
 )
-from config.settings import settings  # settings.PROMPT_DIR 경로 사용
+from config.settings import setting  # settings.PROMPT_DIR 경로 사용
 
 class PromptLoader:
     @staticmethod
@@ -19,8 +19,8 @@ class PromptLoader:
             template_name (str): 템플릿 파일 이름 (확장자 제외)
         """
         # 1. 파일 경로 탐색 (.yaml 우선, 없으면 .yml 확인)
-        path_yaml = settings.PROMPT_DIR / f"{template_name}.yaml"
-        path_yml = settings.PROMPT_DIR / f"{template_name}.yml"
+        path_yaml = setting.PROMPT_DIR / f"{template_name}.yaml"
+        path_yml = setting.PROMPT_DIR / f"{template_name}.yml"
         
         target_file = None
 

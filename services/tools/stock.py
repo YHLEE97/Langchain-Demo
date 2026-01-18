@@ -1,4 +1,3 @@
-# tools/stock.py
 import FinanceDataReader as fdr
 from langchain_core.tools import tool
 

@@ -1,4 +1,4 @@
-from .settings import settings
+from config.settings import setting
 
 class EmbeddingType:
     OPENAI_EMBEDDING_3_SMALL = "text-embedding-3-small"
@@ -13,5 +13,8 @@ ACTIVE_EMBEDDING = EmbeddingType.OPENAI_EMBEDDING_3_SMALL
 embedding_configs = {
     # 1. OpenAI (Embedding-3-small)
     EmbeddingType.OPENAI_EMBEDDING_3_SMALL: {
+        "provider": "openai",
+        "model_name": "text-embedding-3-small",
+        "api_key": setting.OPENAI_API_KEY
     },
 }

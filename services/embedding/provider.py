@@ -1,25 +1,31 @@
 from langchain_openai import OpenAIEmbeddings
+from abc import ABC, abstractmethod
+from langchain_core.embeddings import Embeddings
+from common.logger import get_logger
 
+logger = get_logger(__name__)
 
-# # 1. [인터페이스] 모든 Provider가 지켜야 할 규칙 정의
-# class BaseLLMProvider(ABC):
-#     @abstractmethod
-#     def create_llm(self, config: dict) -> BaseChatModel:
-#         """설정(config)을 받아서 LangChain LLM 객체를 반환해야 함"""
-#         pass
+# 1. [인터페이스] 모든 임베딩 Provider가 지켜야 할 규칙
+class BaseEmbeddingProvider(ABC):
+    @abstractmethod
+    def create_embedding(self, config: dict) -> Embeddings:
+        """설정(config)을 받아서 LangChain Embeddings 객체를 반환"""
+        pass
     
-# 2. [외부 API] OpenAI, Google, Anthropic 등
-class CloudEmbeddingProvider():
-    def get_gpt_embedding_3_small():
-        return OpenAIEmbeddings(model="text-embedding-3-small")
-
-    
-    # def create_llm(self, config: dict) -> BaseChatModel:
+# 2. [Cloud] OpenAI, Google 등 외부 API
+class CloudEmbeddingProvider(BaseEmbeddingProvider):
+    def create_embedding(self, config: dict) -> Embeddings:
+        logger.info(f"클라우드 임베딩 연결 중: {config['model_name']}")
+        logger.info(f"클라우드 임베딩 연결 중: {config}")
         
-    #     # custom_slm.py에 있는 Wrapper 클래스 사용
-    #     return ChatOpenAI(
-    #         model_path=str(config["model_path"]),
-    #         model_kwargs=config["model_kwargs"],
-    #         pipeline_kwargs=config["pipeline_kwargs"]
-    #     )
+        # provider가 openai일 경우
+        if config["provider"] == "openai":
+            return OpenAIEmbeddings(
+                model=config["model_name"],
+                api_key=config["api_key"]
+            )
+        else:
+            # logger.info(f"지원하지 않는 Cloud Provider: {config['provider']}")
+            logger.info(f"지원하지 않는 Cloud Provider: {config['provider']}")
+            raise ValueError(f"지원하지 않는 Cloud Provider: {config['provider']}")
         

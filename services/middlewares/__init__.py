@@ -1,4 +1,3 @@
-# tools/__init__.py
 from .middleware_llm import summarization_middleware
 
 from .base_middleware import *

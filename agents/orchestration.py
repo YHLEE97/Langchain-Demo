@@ -1,9 +1,7 @@
-# core/agent.py
 from services.tools import get_all_tools
 from services.middlewares import get_all_middleware
 from services.llm import get_llm
 from services.prompt import get_prompt
-from langchain_google_genai import ChatGoogleGenerativeAI
 
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain.agents import create_agent, AgentState
