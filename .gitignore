@@ -23,5 +23,8 @@ __pycache__/
 Thumbs.db
 
 # slm(naver-hyperclovax)
-slm/naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B
-slm/naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-0.5B
+slm/naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B/
+slm/naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-0.5B/
+
+# log
+logs/

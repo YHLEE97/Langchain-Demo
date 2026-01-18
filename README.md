@@ -16,11 +16,15 @@
 프로젝트 실행을 위한 환경 설정 및 설치 가이드입니다.
 
 ### 1. 가상환경 설정 및 패키지 설치
+Python 3.13 설치가필요합니다.
+
 Python 가상환경을 생성하고 필수 의존성 패키지를 설치합니다.
 
 ```bash
 # 1. 가상환경 생성 (.venv)
-python -m venv .venv
+py -3.13 -m venv .venv
+# (Mac/Linux의 경우: python3.13 -m venv .venv)
+
 
 # 2. 가상환경 활성화 (Windows)
 .venv\Scripts\activate
@@ -58,7 +62,7 @@ python slm/naver-hyperclovax/test_1_5b.py
 ### 4. Usage
 - CLI 기반 테스트 (Backend) - Test
 ```bash
-python main.py
+python test.py
 ```
 -  웹 챗봇 서비스 실행 (Frontend + Server)
 ```bash

@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from core.logger import get_logger # 방금 만든 로거 임포트
 
 # core 모듈 경로 추가
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -14,6 +15,9 @@ from core.agent import create_my_agent
 
 # 환경 설정
 load_dotenv()
+
+# 로거 초기화 (이름은 보통 __name__ 사용)
+logger = get_logger(__name__)
 
 app = FastAPI()
 
@@ -40,6 +44,8 @@ async def read_root(request: Request):
 # --- [라우터 2] 채팅 메시지 처리 (POST) ---
 @app.post("/chat")
 async def chat_endpoint(request: ChatRequest):
+    logger.info(f"사용자 요청 수신: user_id={request.user_id}, query={request.query}")
+    
     try:
         # LangChain 에이전트 실행
         result = agent_app.invoke(
@@ -47,6 +53,9 @@ async def chat_endpoint(request: ChatRequest):
             {"configurable": {"thread_id": request.thread_id}}
         )
         ai_message = result["messages"][-1].content
+        logger.info(f"AI 응답 생성 완료: {result["messages"][-1].content}")
+        logger.debug(f"AI 응답 생성 완료: {str(result)}")
         return {"response": ai_message}
     except Exception as e:
+        logger.error(f"채팅 처리 중 오류 발생: {str(e)}", exc_info=True)
         return {"response": f"오류가 발생했습니다: {str(e)}"}
