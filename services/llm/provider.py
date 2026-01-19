@@ -81,3 +81,23 @@ class LocalLLMProvider(BaseLLMProvider):
         
         logger.info(f"로컬 모델 로딩 완료")
         return ChatHuggingFace(llm=hf_pipeline)
+
+
+# 4. [클라우드] Hanwha System API LLM
+class APILLMProvider(BaseLLMProvider):
+    def create_llm(self, config: dict) -> BaseChatModel:
+        provider_type = config["provider"]
+        logger.info(f"클라우드 API LLM 연결 중 ({provider_type})")
+        logger.info(f"클라우드 API LLM 연결 중 ({config})")
+
+        if provider_type == "hanwha_system":
+            return ChatOpenAI(
+                base_url=config["base_url"],      # vLLM 주소
+                api_key=config["api_key"],        # API Key
+                model=config["model_name"],       # 타겟 모델명
+                temperature=config["temperature"]         
+            )
+        else:
+            logger.info(f"지원하지 않는 Cloud Provider: {provider_type}")
+            raise ValueError(f"지원하지 않는 Cloud Provider: {provider_type}")
+

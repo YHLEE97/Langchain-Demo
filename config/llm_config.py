@@ -5,15 +5,16 @@ class ModelType:
     HYPERCLOVA_LOCAL_0_5B = "HyperCLOVAX-SEED-Text-Instruct-0.5B"
     OPENAI_GPT4 = "openai_gpt4"
     GEMINI_2_5_FLASH = "gemini-2.5-flash"
+    HANWHA_SYSTEM_CUSTOM_EXAONE = "LGAI-EXAONE/EXAONE-4.0-32B-FP8"
 
 # =========================================================
 # ▼ [여기를 수정하세요] 사용할 모델을 여기서 선택합니다.
 # =========================================================
 # 1. Main Model
-ACTIVE_MODEL = ModelType.OPENAI_GPT4
+ACTIVE_MODEL = ModelType.HANWHA_SYSTEM_CUSTOM_EXAONE
 
 # 2. Middleware Model
-MIDDLEWARE_SUMMARY_MODEL = ModelType.GEMINI_2_5_FLASH
+MIDDLEWARE_SUMMARY_MODEL = ModelType.HANWHA_SYSTEM_CUSTOM_EXAONE
 # =========================================================
 
 # 모델별 세부 설정 관리
@@ -60,5 +61,13 @@ llm_configs = {
         "model_name": "gemini-2.5-flash",
         "temperature": 0.7,
         "api_key": setting.GOOGLE_API_KEY
+    },
+    # 5. Hanwha System - Custom EXAONE
+    ModelType.HANWHA_SYSTEM_CUSTOM_EXAONE: {
+        "provider": "hanwha_system",
+        "model_name": "LGAI-EXAONE/EXAONE-4.0-32B-FP8",
+        "base_url": setting.HANWHA_SYSTEM_EXAONE_URL,
+        "temperature": 1.0,
+        "api_key": setting.HANWHA_SYSTEM_EXAONE_KEY
     }
 }

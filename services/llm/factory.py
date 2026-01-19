@@ -1,5 +1,5 @@
 from config.llm_config import llm_configs, ACTIVE_MODEL, MIDDLEWARE_SUMMARY_MODEL
-from .provider import CloudLLMProvider, LocalLLMProvider
+from .provider import CloudLLMProvider, LocalLLMProvider, APILLMProvider
 
 def _create_llm_instance(target_model_key: str):
     """
@@ -16,9 +16,12 @@ def _create_llm_instance(target_model_key: str):
     if provider_type in ["openai", "google"]:
         provider = CloudLLMProvider()
         
-    elif provider_type == "local":
+    elif provider_type in ["local"]:
         provider = LocalLLMProvider()
-        
+
+    elif provider_type in ["hanwha_system"]:
+        provider = APILLMProvider()
+
     else:
         raise ValueError(f"❌ 알 수 없는 Provider 설정입니다: {provider_type}")
 

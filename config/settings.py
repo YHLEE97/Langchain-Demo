@@ -30,6 +30,10 @@ class Setting:
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
     HUGGING_FACE_TOKEN = os.getenv("HUGGING_FACE_TOKEN")
+    HANWHA_SYSTEM_EXAONE_KEY = os.getenv("HANWHA_SYSTEM_EXAONE_KEY")
+
+    # --- [Base URL] (.env에서 가져옴) ---
+    HANWHA_SYSTEM_EXAONE_URL = os.getenv("HANWHA_SYSTEM_EXAONE_URL")
 
     # --- [앱 설정] ---
     APP_NAME = "My AI Assistant"
