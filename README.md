@@ -64,14 +64,17 @@ python slm/naver-hyperclovax/test_1_5b.py
 - config/prompt_config.py - ACTIVE_PROMPT 적용
 
 ### 5. Usage
-- CLI 기반 테스트 (Backend) - Test
+- CLI 기반 테스트 - Test
 ```bash
 python test.py
 ```
 -  웹 챗봇 서비스 실행 (Frontend + Server)
 ```bash
-# 서버 실행 (Auto Reload 모드)
+# 서버 실행 - LangChain (Auto Reload 모드)
 uvicorn server:app --reload
+
+# 서버 실행 - LangGraph (Auto Reload 모드)
+uvicorn server_graph:app --reload
 ```
 - 접속 주소: http://127.0.0.1:8000
 
