@@ -2,6 +2,7 @@ from .utils import get_current_date
 from .stock import get_kospi_index
 from .search import get_tavily_tool
 from .retriever import get_retrieve_context
+from .db_test import search_service_requests
 
 def get_all_tools():
     """에이전트가 사용할 모든 도구 리스트를 반환합니다."""
@@ -9,5 +10,6 @@ def get_all_tools():
         get_current_date,
         get_kospi_index,
         get_tavily_tool(max_results=3),  # 검색 결과 개수 설정
-        get_retrieve_context
+        get_retrieve_context,
+        search_service_requests
     ]

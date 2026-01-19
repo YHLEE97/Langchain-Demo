@@ -103,25 +103,37 @@ def create_my_graph_agent():
     
     tool_names = ", ".join([t.name for t in tools])
 
-    template = """Answer the following questions as best you can. You have access to the following tools:
-
-{tools}
-
-Use the following format:
-
-Question: the input question you must answer
-Thought: you should always think about what to do
-Action: the action to take, should be one of [{tool_names}]
-Action Input: the input to the action
-Observation: the result of the action
-... (this Thought/Action/Action Input/Observation can repeat N times)
-Thought: I now know the final answer
-Final Answer: the final answer to the original input question
-
-Begin!
-
-Question: {input}
-Thought:{agent_scratchpad}"""
+    template = """당신은 사용자의 요청을 해결하기 위해 도구(Tool)를 사용할 수 있는 똑똑한 AI 비서입니다.
+    
+    사용 가능한 도구 목록:
+    {tools}
+    
+    사용자가 질문을 하면, 아래의 [생각의 과정]을 거쳐서 답변하세요.
+    
+    [생각의 과정 가이드]
+    1. 사용자의 질문을 해결하는 데 도구가 필요한지 생각합니다.
+    2. 도구가 필요하다면 'Action'과 'Action Input'을 출력합니다.
+    3. 도구 사용 결과(Observation)가 나오면, 그것을 보고 최종 답변(Final Answer)을 합니다.
+    
+    [출력 형식 예시 - 반드시 이 형식을 지키세요!]
+    
+    Question: SCM팀의 진행중인 요청 찾아줘
+    Thought: 사용자가 SCM팀의 진행중(IN_PROGRESS)인 문서를 찾고 있어. search_service_requests 도구를 써야 해.
+    Action: search_service_requests
+    Action Input: "IN_PROGRESS", "SCM팀"
+    Observation: (도구 실행 결과가 여기에 나옵니다)
+    Thought: 도구 결과를 보니 3건이 검색되었네. 이걸 사용자에게 알려주자.
+    Final Answer: SCM팀의 진행중인 요청은 총 3건입니다. 주요 내용은...
+    
+    [중요 규칙]
+    - 'Action Input'에는 도구에 들어갈 인자 값만 쉼표(,)나 따옴표로 명확히 적으세요.
+    - 도구가 필요 없으면 바로 'Final Answer:'를 출력하세요.
+    - 상태(status) 값 매핑: '신규'->'NEW', '진행중'->'IN_PROGRESS', '완료'->'DONE', '반려'->'REJECTED'
+    
+    이제 시작합니다!
+    
+    Question: {input}
+    Thought:{agent_scratchpad}"""
 
     prompt = PromptTemplate.from_template(template)
 
